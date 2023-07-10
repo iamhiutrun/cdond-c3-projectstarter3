@@ -41,7 +41,7 @@ commands:
           when: on_fail
           command: |
             # Curl command here to see if there was a successful migration associated with the workflow id, store result in SUCCESS variable
-            SUCCESS=$(curl --insecure https://kvdb.io/QSsYGkNVFPtKXP7dQLQkuJY/migration_${CIRCLE_WORKFLOW_ID:0:7})
+            SUCCESS=$(curl --insecure https://kvdb.io/RjwtUntH7hgxoNKKa9WZED/migration_${CIRCLE_WORKFLOW_ID:0:7})
             echo $SUCCESS
             if [[ "${SUCCESS}" == "1" ]]
             then
@@ -216,7 +216,7 @@ jobs:
       # Add ssh keys with fingerprint
       - add_ssh_keys:
           fingerprints:
-            - "5d:67:e3:85:c2:b2:46:0f:dd:7f:6a:4b:06:66:8f:d0"
+            - "47:33:54:9d:19:41:9c:7b:02:b0:2e:eb:85:4f:cf:66"
       - attach_workspace:
           at: ~/
       - run:
@@ -280,6 +280,9 @@ jobs:
           command: |
             # Your code here
             cd backend
+            npm i
+            npm run build
+            # npm run migrations > migrations.txt
             npm run migrations > migrations_dump.txt
             cat migrations_dump.txt
       - run:
@@ -350,7 +353,7 @@ jobs:
       # Add ssh keys with fingerprint
       - add_ssh_keys:
           fingerprints:
-            - '5d:67:e3:85:c2:b2:46:0f:dd:7f:6a:4b:06:66:8f:d0'
+            - '47:33:54:9d:19:41:9c:7b:02:b0:2e:eb:85:4f:cf:66'
       - attach_workspace:
           at: ~/
       - run:
@@ -488,7 +491,7 @@ jobs:
       - checkout
       - add_ssh_keys:
           fingerprints:
-            - '5d:67:e3:85:c2:b2:46:0f:dd:7f:6a:4b:06:66:8f:d0'
+            - '47:33:54:9d:19:41:9c:7b:02:b0:2e:eb:85:4f:cf:66'
       - run:
           name: Install dependencies
           command: |
